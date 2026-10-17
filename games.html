@@ -1,32 +1,32 @@
-<?php include 'users.php'; requireLogin();
-
-$userId = $_SESSION['user_id'];
-$userScores = getUserScores($userId);
-$game1Best = 0;
-$game2Best = 0;
-foreach ($userScores as $s) {
-    if ($s['game_name'] === 'binary_race' && $s['score'] > $game1Best) $game1Best = $s['score'];
-    if ($s['game_name'] === 'ascii_codebreaker' && $s['score'] > $game2Best) $game2Best = $s['score'];
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binary Games</title>
+    <title>Games — MyBinaX</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php include 'nav.php'; ?>
+<nav class="navbar">
+    <div class="nav-brand">⚡ MyBinaX</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="lecture.html">Lecture</a>
+        <a href="calculator.html">Calculator</a>
+        <a href="converter.html">Converter</a>
+        <a href="games.html" class="active">Games</a>
+    </div>
+    <div class="gamer-tag" id="gamerTag"></div>
+</nav>
+
 <section class="games-container">
-    <h1>🎯 Binary Games — Ready, <?= getGameName() ?>?</h1>
+    <h1>🎯 Binary Games — Ready? Let's Go!</h1>
 
     <div class="game-card">
         <h3>🎮 Game 1: Binary → Decimal Race</h3>
-        <p>Convert binary to decimal! Best streak: <strong><?= $game1Best ?></strong></p>
+        <p>Convert the binary number to decimal! Best streak: <strong id="best1">0</strong></p>
         <div class="question-box">
-            <p>What is this number?</p>
+            <p>What is this number in decimal?</p>
             <code id="binQuestion" class="big-binary">1010</code>
         </div>
         <input type="number" id="game1Answer" placeholder="Your answer...">
@@ -36,7 +36,7 @@ foreach ($userScores as $s) {
 
     <div class="game-card">
         <h3>🎮 Game 2: ASCII Code Breaker</h3>
-        <p>Decode binary to a letter! Best streak: <strong><?= $game2Best ?></strong></p>
+        <p>Decode the binary message! Best streak: <strong id="best2">0</strong></p>
         <div class="question-box">
             <p>This binary = which uppercase letter?</p>
             <code id="asciiQuestion" class="big-binary">01000001</code>
@@ -51,7 +51,12 @@ foreach ($userScores as $s) {
 <script>
 let score1Val = 0, score2Val = 0;
 let currentAns1 = 0, currentAns2 = '';
-const userId = '<?= $userId ?>';
+
+// Load saved best scores
+let best1 = parseInt(localStorage.getItem('bestScore1') || '0');
+let best2 = parseInt(localStorage.getItem('bestScore2') || '0');
+document.getElementById('best1').textContent = best1;
+document.getElementById('best2').textContent = best2;
 
 function generateGame1() {
     const len = 4 + Math.floor(Math.random() * 3);
@@ -66,15 +71,14 @@ function checkGame1() {
     const ans = parseInt(document.getElementById('game1Answer').value);
     if (ans === currentAns1) {
         score1Val++;
-        alert('✅ Correct!');
+        alert('✅ Correct! +1');
     } else {
         alert(`❌ Answer was ${currentAns1}`);
-        // Save score on reset
-        fetch('save_score.php', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: 'game=binary_race&score=' + score1Val
-        });
+        if (score1Val > best1) {
+            best1 = score1Val;
+            localStorage.setItem('bestScore1', best1);
+            document.getElementById('best1').textContent = best1;
+        }
         score1Val = 0;
     }
     document.getElementById('score1').textContent = score1Val;
@@ -85,7 +89,7 @@ function generateGame2() {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const ch = letters[Math.floor(Math.random() * letters.length)];
     currentAns2 = ch;
-    document.getElementById('asciiQuestion').textContent = ch.charCodeAt(0).toString(2).padStart(8,'0');
+    document.getElementById('asciiQuestion').textContent = ch.charCodeAt(0).toString(2).padStart(8, '0');
     document.getElementById('game2Answer').value = '';
 }
 
@@ -93,19 +97,22 @@ function checkGame2() {
     const ans = (document.getElementById('game2Answer').value || '').toUpperCase();
     if (ans === currentAns2) {
         score2Val++;
-        alert('✅ Correct!');
+        alert('✅ Code cracked! +1');
     } else {
         alert(`❌ Answer was ${currentAns2}`);
-        fetch('save_score.php', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: 'game=ascii_codebreaker&score=' + score2Val
-        });
+        if (score2Val > best2) {
+            best2 = score2Val;
+            localStorage.setItem('bestScore2', best2);
+            document.getElementById('best2').textContent = best2;
+        }
         score2Val = 0;
     }
     document.getElementById('score2').textContent = score2Val;
     generateGame2();
 }
+
+document.getElementById('gamerTag').innerHTML = 
+  localStorage.getItem('gameName') ? `Playing as: <span class="game-name">${localStorage.getItem('gameName')}</span>` : '';
 
 generateGame1();
 generateGame2();
