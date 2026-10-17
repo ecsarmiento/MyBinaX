@@ -1,14 +1,24 @@
-<?php include 'users.php'; requireLogin(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binary Calculator</title>
+    <title>Calculator — MyBinaX</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php include 'nav.php'; ?>
+<nav class="navbar">
+    <div class="nav-brand">⚡ MyBinaX</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="lecture.html">Lecture</a>
+        <a href="calculator.html" class="active">Calculator</a>
+        <a href="converter.html">Converter</a>
+        <a href="games.html">Games</a>
+    </div>
+    <div class="gamer-tag" id="gamerTag"></div>
+</nav>
+
 <section class="tool-container">
     <h1>🧮 Binary Calculator</h1>
     <div class="calculator-box">
@@ -20,9 +30,14 @@
         </select>
         <input type="text" id="bin2" placeholder="e.g. 1101" oninput="validateBinary(this)">
         <button onclick="calculate()">Calculate</button>
-        <div id="calcResult" class="result-display"></div>
+        <div id="calcResult" class="result-display">Enter two binary numbers above</div>
     </div>
 </section>
+
 <script src="script.js"></script>
+<script>
+document.getElementById('gamerTag').innerHTML = 
+  localStorage.getItem('gameName') ? `Playing as: <span class="game-name">${localStorage.getItem('gameName')}</span>` : '';
+</script>
 </body>
 </html>
