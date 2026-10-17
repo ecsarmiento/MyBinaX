@@ -1,0 +1,52 @@
+* { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+:root {
+    --primary: #2563eb;
+    --dark: #1e293b;
+    --accent: #10b981;
+    --bg: #f0f4f8;
+    --card: #ffffff;
+    --name: #d946ef;
+}
+body { background: var(--bg); color: var(--dark); line-height: 1.6; }
+
+/* Auth Pages */
+.auth-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #1e293b, #3b82f6); }
+.auth-box { background: white; padding: 2.5rem; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 100%; max-width: 400px; }
+.auth-box h2 { text-align: center; margin-bottom: 1.5rem; color: var(--primary); }
+.auth-box input { width: 100%; padding: 0.8rem; margin: 0.5rem 0; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 1rem; }
+.auth-box button { width: 100%; padding: 0.9rem; background: var(--primary); color: white; border: none; border-radius: 0.5rem; font-size: 1rem; cursor: pointer; margin-top: 0.5rem; transition: 0.2s; }
+.auth-box button:hover { background: #1d4ed8; }
+.error { background: #fee2e2; color: #b91c1c; padding: 0.7rem; border-radius: 0.4rem; margin-bottom: 1rem; }
+.success { background: #dcfce7; color: #166534; padding: 0.7rem; border-radius: 0.4rem; margin-bottom: 1rem; }
+
+/* Navbar */
+.navbar { background: var(--dark); color: white; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.nav-brand { font-weight: bold; font-size: 1.3rem; color: var(--accent); }
+.nav-links a { color: white; text-decoration: none; padding: 0.5rem 1rem; border-radius: 0.4rem; transition: 0.2s; }
+.nav-links a:hover, .nav-links a.active { background: var(--primary); }
+.gamer-tag { color: #cbd5e1; font-size: 0.9rem; }
+.game-name { color: var(--name); font-weight: bold; }
+
+/* Hero & Cards */
+.hero { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; text-align: center; }
+.hero h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.card { background: var(--card); padding: 1.8rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-decoration: none; color: inherit; transition: 0.3s; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+.card h3 { color: var(--primary); margin-bottom: 0.5rem; }
+
+/* Lesson & Tools */
+.lesson-container, .tool-container, .games-container { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
+.lesson-section { background: white; padding: 1.8rem; margin-bottom: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.example-box { background: #f8fafc; padding: 1.2rem; border-radius: 0.6rem; margin: 1rem 0; border-left: 4px solid var(--primary); }
+.ascii-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+.ascii-table th, .ascii-table td { border: 1px solid #ddd; padding: 0.6rem; text-align: center; }
+.ascii-table th { background: var(--primary); color: white; }
+input { padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 1rem; margin: 0.5rem 0; width: 100%; max-width: 400px; }
+button { padding: 0.8rem 1.5rem; background: var(--accent); color: white; border: none; border-radius: 0.5rem; font-size: 1rem; cursor: pointer; margin: 0.5rem 0; transition: 0.2s; }
+button:hover { background: #059669; }
+.output-box { background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; margin-top: 0.8rem; font-family: monospace; font-size: 1.1rem; word-break: break-all; }
+.result-display { margin-top: 1rem; font-size: 1.3rem; font-weight: bold; padding: 1rem; background: #eff6ff; border-radius: 0.5rem; }
+.calculator-box, .converter-group { background: white; padding: 1.8rem; border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.big-binary { font-size: 1.6rem; letter-spacing: 4px; background: #dbeafe; padding: 1rem; border-radius: 0.5rem; display: inline-block; margin: 1rem 0; }
+.game-card { background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid var(--accent); }
