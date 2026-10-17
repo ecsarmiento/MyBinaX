@@ -1,0 +1,7 @@
+# Data files (will be created automatically)
+data/
+*.json
+
+# System files
+.DS_Store
+Thumbs.db
