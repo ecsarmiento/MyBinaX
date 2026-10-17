@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBinaX — Binary Learning Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">⚡ MyBinaX</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="lecture.html">Lecture</a>
+            <a href="calculator.html">Calculator</a>
+            <a href="converter.html">Converter</a>
+            <a href="games.html">Games</a>
+            <a href="#" id="logoutLink" class="hidden">🚪 Logout</a>
+        </div>
+        <div class="gamer-tag" id="gamerTag"></div>
+    </nav>
+
+    <section class="hero">
+        <h1 id="welcomeMsg">Welcome! 👋</h1>
+        <p>Master binary numbers, ASCII codes & digital logic — learn by doing!</p>
+        
+        <div id="authSection" class="auth-box">
+            <h3>🎮 Enter Your Game Profile</h3>
+            <input type="text" id="nameInput" placeholder="Your Name" required>
+            <input type="text" id="gameNameInput" placeholder="Game Nickname" required>
+            <button onclick="saveProfile()">Start Learning</button>
+        </div>
+
+        <div class="card-grid" id="featureCards">
+            <a href="lecture.html" class="card">
+                <h3>📖 Learn & Understand</h3>
+                <p>Binary basics, place values, ASCII table & how computers store text</p>
+            </a>
+            <a href="calculator.html" class="card">
+                <h3>🧮 Binary Calculator</h3>
+                <p>Add, subtract, multiply — see binary & decimal results</p>
+            </a>
+            <a href="converter.html" class="card">
+                <h3>🔄 All-in-One Converter</h3>
+                <p>Text ↔ Binary · Decimal ↔ Binary</p>
+            </a>
+            <a href="games.html" class="card">
+                <h3>🎯 Practice Games</h3>
+                <p>Earn points & track your progress!</p>
+            </a>
+        </div>
+    </section>
+
+<script src="script.js"></script>
+<script>
+function saveProfile() {
+    const name = document.getElementById('nameInput').value.trim();
+    const gameName = document.getElementById('gameNameInput').value.trim();
+    if (!name || !gameName) return alert('Fill in both fields!');
+    
+    localStorage.setItem('fullName', name);
+    localStorage.setItem('gameName', gameName);
+    updateUI();
+}
+
+function updateUI() {
+    const gameName = localStorage.getItem('gameName');
+    if (gameName) {
+        document.getElementById('welcomeMsg').innerHTML = `Hello, <span class="game-name">${gameName}</span>! 👋`;
+        document.getElementById('authSection').classList.add('hidden');
+        document.getElementById('gamerTag').innerHTML = `Playing as: <span class="game-name">${gameName}</span>`;
+        document.getElementById('logoutLink').classList.remove('hidden');
+    }
+}
+
+document.getElementById('logoutLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('fullName');
+    localStorage.removeItem('gameName');
+    location.reload();
+});
+
+updateUI();
+</script>
+</body>
+</html>
