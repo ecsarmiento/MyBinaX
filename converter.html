@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter — MyBinaX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-brand">⚡ MyBinaX</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="lecture.html">Lecture</a>
+        <a href="calculator.html">Calculator</a>
+        <a href="converter.html" class="active">Converter</a>
+        <a href="games.html">Games</a>
+    </div>
+    <div class="gamer-tag" id="gamerTag"></div>
+</nav>
+
+<section class="tool-container">
+    <h1>🔄 Converter Toolbox</h1>
+
+    <div class="converter-group">
+        <h3>Text → Binary</h3>
+        <input type="text" id="textToBin" placeholder="Enter text..." oninput="textBinaryConvert()">
+        <div id="textBinResult" class="output-box">Result appears here...</div>
+    </div>
+
+    <div class="converter-group">
+        <h3>Decimal → Binary</h3>
+        <input type="number" id="decInput" placeholder="Enter decimal..." oninput="decBinConvert()">
+        <div id="decBinResult" class="output-box">Result appears here...</div>
+    </div>
+
+    <div class="converter-group">
+        <h3>Binary → Decimal</h3>
+        <input type="text" id="binInput" placeholder="Enter binary..." oninput="binDecConvert()">
+        <div id="binDecResult" class="output-box">Result appears here...</div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+<script>
+document.getElementById('gamerTag').innerHTML = 
+  localStorage.getItem('gameName') ? `Playing as: <span class="game-name">${localStorage.getItem('gameName')}</span>` : '';
+</script>
+</body>
+</html>
