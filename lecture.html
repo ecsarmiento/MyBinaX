@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture — MyBinaX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-brand">⚡ MyBinaX</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="lecture.html" class="active">Lecture</a>
+        <a href="calculator.html">Calculator</a>
+        <a href="converter.html">Converter</a>
+        <a href="games.html">Games</a>
+    </div>
+    <div class="gamer-tag" id="gamerTag"></div>
+</nav>
+
+<section class="lesson-container">
+    <h1>📖 Understanding Binary & ASCII</h1>
+
+    <div class="lesson-section">
+        <h2>1. What is Binary?</h2>
+        <p>Computers use only <strong>0 and 1</strong> — called <em>bits</em>. Everything inside is combinations of these two digits.</p>
+        <div class="example-box">
+            <p>Decimal: 0 1 2 3 4 5 6 7 8 9 ...</p>
+            <p>Binary:  0 1 10 11 100 101 110 111 1000 ...</p>
+            <p>Place values (from right, starting at 1):<br>
+            <code>128 &nbsp;64 &nbsp;32 &nbsp;16 &nbsp;&nbsp;8 &nbsp;&nbsp;4 &nbsp;&nbsp;2 &nbsp;&nbsp;1</code></p>
+            <p>Each position doubles the value of the one to its right!</p>
+        </div>
+    </div>
+
+    <div class="lesson-section">
+        <h2>2. What is ASCII?</h2>
+        <p>ASCII assigns every character a number. That number is then converted to binary and stored.</p>
+        <div class="example-box">
+            <table class="ascii-table">
+                <tr><th>Character</th><th>Decimal Code</th><th>8-bit Binary</th></tr>
+                <tr><td>A</td><td>65</td><td>01000001</td></tr>
+                <tr><td>B</td><td>66</td><td>01000010</td></tr>
+                <tr><td>a</td><td>97</td><td>01100001</td></tr>
+                <tr><td>0</td><td>48</td><td>00110000</td></tr>
+                <tr><td>!</td><td>33</td><td>00100001</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="lesson-section">
+        <h2>3. How It All Works Together</h2>
+        <ol>
+            <li>You press the letter <strong>A</strong> on your keyboard</li>
+            <li>Computer looks it up in ASCII: A = <strong>65</strong></li>
+            <li>65 converts to binary: <strong>01000001</strong></li>
+            <li>That sequence of 8 bits travels through the computer</li>
+            <li>Your screen converts it back → the letter <strong>A</strong> appears!</li>
+        </ol>
+    </div>
+
+    <div class="lesson-section">
+        <h2>4. Try It Yourself!</h2>
+        <p>Type something below and see its binary code:</p>
+        <input type="text" id="asciiInput" placeholder="Type here..." oninput="showBinary()">
+        <div id="binaryOutput" class="output-box">Start typing to see binary codes...</div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+<script>
+document.getElementById('gamerTag').innerHTML = 
+  localStorage.getItem('gameName') ? `Playing as: <span class="game-name">${localStorage.getItem('gameName')}</span>` : '';
+</script>
+</body>
+</html>
